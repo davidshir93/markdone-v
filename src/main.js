@@ -15,6 +15,10 @@ import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
 /* add icons to the library */
 library.add(faUserSecret);
 
+store.subscribe((mutations, state) => {
+  localStorage.setItem("goals", JSON.stringify(state.goals));
+});
+
 createApp(App)
   .use(store)
   .use(router)

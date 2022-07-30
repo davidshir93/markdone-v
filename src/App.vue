@@ -5,7 +5,13 @@
   </nav>
   <router-view />
 </template>
-
+<script>
+export default {
+  beforeMount() {
+    this.$store.commit("initState");
+  },
+};
+</script>
 <style lang="scss">
 nav {
   padding: 30px;
