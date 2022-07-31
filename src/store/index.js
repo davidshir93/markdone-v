@@ -91,6 +91,9 @@ export default createStore({
       ];
       commit("setGoals", initialGoals);
     },
+    addNewGoal({ commit }, newGoal) {
+      commit("setGoals", [newGoal, ...this.state.goals]);
+    },
   },
   modules: {},
 });
