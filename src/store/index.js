@@ -94,6 +94,11 @@ export default createStore({
     addNewGoal({ commit }, newGoal) {
       commit("setGoals", [newGoal, ...this.state.goals]);
     },
+    changeGoalDone({ commit }, { id, updatedValue }) {
+      const newGoals = this.state.goals;
+      newGoals.find((goal) => goal.id === id).done = updatedValue;
+      commit("setGoals", newGoals);
+    },
   },
   modules: {},
 });
