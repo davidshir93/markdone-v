@@ -10,10 +10,44 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 /* import specific icons */
-import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
+import {
+  faUserSecret,
+  faAddressCard,
+  faAnchor,
+  faAppleWhole,
+  faArrowUp,
+  faAtom,
+  faBan,
+  faBanSmoking,
+  faBasketball,
+  faBath,
+  faBell,
+  faBed,
+  faBicycle,
+  faBookOpen,
+  faBowlRice,
+  faBrain,
+} from "@fortawesome/free-solid-svg-icons";
 
 /* add icons to the library */
-library.add(faUserSecret);
+library.add(
+  faUserSecret,
+  faAddressCard,
+  faAnchor,
+  faAppleWhole,
+  faArrowUp,
+  faAtom,
+  faBan,
+  faBanSmoking,
+  faBasketball,
+  faBath,
+  faBell,
+  faBed,
+  faBicycle,
+  faBookOpen,
+  faBowlRice,
+  faBrain
+);
 
 store.subscribe((mutations, state) => {
   localStorage.setItem("goals", JSON.stringify(state.goals));

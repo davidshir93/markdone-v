@@ -12,7 +12,9 @@
     <div class="goalElementsContainer" :class="[completed && 'completed']">
       <div class="goalName">
         <!-- Add the style and icon you want using the String format -->
-        <font-awesome-icon class="icon" icon="fa-solid fa-user-secret" />
+        <font-awesome-icon class="icon" :icon="['fa-solid', goal.icon]" />
+
+        <!-- <font-awesome-icon icon="fa-solid fa-user-secret" /> -->
         <h2>{{ goal.name }}</h2>
       </div>
       <div class="goalDetails">
@@ -37,7 +39,7 @@ export default {
   },
   computed: {
     completed() {
-      return this.goal.done >= this.goal.goalValue;
+      return Number(this.goal.done) >= Number(this.goal.goalValue);
     },
     sliderBackground() {
       const position = (this.goal.done / this.goal.goalValue) * 100;
@@ -139,7 +141,7 @@ export default {
     width: 100%;
     height: 100%;
     cursor: pointer;
-    animate: 0.2s;
+    // animate: 0.2s;
     box-shadow: 0px 0px 0px #000000;
     /* background: linear-gradient(90deg, greenyellow 50%, white 50%); */
     border-radius: 16px;

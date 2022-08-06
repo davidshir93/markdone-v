@@ -16,7 +16,7 @@ export default createStore({
           {
             id: 1,
             name: "Eat Protein",
-            icon: "fas fa-camera",
+            icon: "fa-user-secret",
             measuring: "grams",
             done: 55,
             goalValue: 125,
@@ -26,7 +26,7 @@ export default createStore({
           {
             id: 2,
             name: "Go to the Gym",
-            icon: "fas fa-camera",
+            icon: "fa-user-secret",
             measuring: "units",
             done: 1,
             goalValue: 4,
@@ -36,7 +36,7 @@ export default createStore({
           {
             id: 3,
             name: "Meditate",
-            icon: "fas fa-camera",
+            icon: "fa-user-secret",
             measuring: "minutes",
             done: 10,
             goalValue: 10,
@@ -61,7 +61,7 @@ export default createStore({
         {
           id: 1,
           name: "Eat Protein",
-          icon: "fas fa-camera",
+          icon: "fa-user-secret",
           measuring: "grams",
           done: 55,
           goalValue: 125,
@@ -71,7 +71,7 @@ export default createStore({
         {
           id: 2,
           name: "Go to the Gym",
-          icon: "fas fa-camera",
+          icon: "fa-user-secret",
           measuring: "units",
           done: 1,
           goalValue: 4,
@@ -81,7 +81,7 @@ export default createStore({
         {
           id: 3,
           name: "Meditate",
-          icon: "fas fa-camera",
+          icon: "fa-user-secret",
           measuring: "minutes",
           done: 10,
           goalValue: 10,
@@ -96,7 +96,7 @@ export default createStore({
     },
     changeGoalDone({ commit }, { id, updatedValue }) {
       const newGoals = this.state.goals;
-      newGoals.find((goal) => goal.id === id).done = updatedValue;
+      this.state.goals.find((goal) => goal.id === id).done = updatedValue;
       commit("setGoals", newGoals);
     },
   },

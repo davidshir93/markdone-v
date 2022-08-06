@@ -77,6 +77,21 @@
     <div class="row row-3">
       <div class="iconsContainer">
         <!-- implement icon picker here -->
+        <div
+          v-for="icon in iconsList"
+          class="icon"
+          :class="isSelectedIcon(icon) && 'selected'"
+          :key="icon"
+          @click="handleIconClick(icon)"
+        >
+          <font-awesome-icon :icon="['fa-solid', icon]" />
+        </div>
+        <!-- <font-awesome-icon
+          v-for="icon in iconsList"
+          class="icon"
+          :icon="['fa-solid', icon]"
+          :key="icon"
+        /> -->
       </div>
       <!-- implement color picker here -->
     </div>
@@ -94,6 +109,24 @@ export default {
   name: "CreateGoalForm",
   data() {
     return {
+      iconsList: [
+        "fa-user-secret",
+        "fa-address-card",
+        "fa-anchor",
+        "fa-apple-whole",
+        "fa-arrow-up",
+        "fa-atom",
+        "fa-ban",
+        "fa-ban-smoking",
+        "fa-basketball",
+        "fa-bath",
+        "fa-bell",
+        "fa-bed",
+        "fa-bicycle",
+        "fa-book-open",
+        "fa-bowl-rice",
+        "fa-brain",
+      ],
       name: "",
       iconName: "fa-bullseye",
       measurement: "Times",
@@ -121,6 +154,9 @@ export default {
     handleFrequencyChange(event) {
       this.frequency = event.target.value;
     },
+    handleIconClick(icon) {
+      this.iconName = icon;
+    },
     handleColorChange(event) {
       this.color = event.target.value;
     },
@@ -136,6 +172,9 @@ export default {
         color: this.color,
       };
       this.addNewGoal(newGoal);
+    },
+    isSelectedIcon(icon) {
+      return this.iconName === icon;
     },
   },
 };
@@ -180,22 +219,22 @@ form {
   .row-2 input:not(:last-child),
   .row-2 select:not(:last-child),
   .row-3 input:not(:last-child) {
-    margin-right: 24px;
+    margin-right: 1.33rem;
   }
 
   input,
   select {
-    border-radius: 16px;
+    border-radius: 1rem;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 24px;
-    margin-top: 24px;
+    padding: 1.33rem;
+    margin-top: 1.33rem;
   }
 
   input[type="submit"] {
-    margin-top: 48px;
+    margin-top: 2rem;
     text-align: center;
     align-items: center;
     justify-content: center;
@@ -208,6 +247,31 @@ form {
     text-align: center;
     align-items: center;
     justify-content: center;
+  }
+}
+
+.iconsContainer {
+  display: flex;
+  width: 50%;
+  flex-wrap: wrap;
+  .icon {
+    // margin: 0.5rem;
+    padding: 0.33rem;
+    margin: 0.33rem;
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
+
+    transition: all 150ms ease-in-out;
+    &:hover {
+      background-color: rgb(255, 252, 159);
+    }
+    &.selected {
+      // background-color: rgb(255, 252, 159);
+      border: 1px solid black;
+    }
   }
 }
 </style>
