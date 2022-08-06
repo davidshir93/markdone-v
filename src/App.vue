@@ -14,6 +14,9 @@ export default {
 };
 </script>
 <style lang="scss">
+* {
+  box-sizing: border-box;
+}
 nav {
   padding: 30px;
 

@@ -1,5 +1,10 @@
 <template>
-  <div class="goal" @click="goalClicked" :class="[completed && 'completed']">
+  <div
+    class="goal"
+    @click="goalClicked"
+    :class="[completed && 'completed']"
+    :style="cssVars"
+  >
     <input
       type="range"
       min="0"
@@ -43,11 +48,13 @@ export default {
     },
     sliderBackground() {
       const position = (this.goal.done / this.goal.goalValue) * 100;
-      if (this.completed) {
-        return { background: "greenyellow" };
-      }
       return {
-        background: `linear-gradient(90deg, ${this.goal.color} ${position}%, #DADADA ${position}%)`,
+        background: `linear-gradient(90deg, ${this.goal.color} ${position}%, ${this.goal.color}40 ${position}%)`,
+      };
+    },
+    cssVars() {
+      return {
+        "--color": `${this.goal.color}40`,
       };
     },
   },
@@ -68,7 +75,6 @@ export default {
 
 <style lang="scss" scoped>
 .goal {
-  background-color: rgb(238, 187, 255);
   border-radius: 16px;
   display: flex;
   align-items: space-between;
@@ -77,13 +83,19 @@ export default {
   position: relative;
   transition: all 550ms cubic-bezier(0, 0.17, 0.23, 1);
   width: 100%;
-
+  &.completed > input {
+    &::after {
+      content: "";
+      border: 0.166rem solid white;
+      opacity: 0.7;
+      border-radius: 1rem;
+    }
+  }
   .goalElementsContainer {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    background-color: rgb(238, 187, 255);
     border-radius: 16px;
     padding: 1.33rem;
     transition: all 550ms cubic-bezier(0, 0.17, 0.23, 1);
@@ -135,23 +147,31 @@ export default {
     border-radius: 1rem;
     margin: 0;
     transition: all 550ms cubic-bezier(0, 0.17, 0.23, 1);
+    &::after {
+      transition: all 550ms cubic-bezier(0, 0.17, 0.23, 1);
+      content: "";
+      z-index: 2;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      border: 0 solid white;
+      opacity: 0;
+      margin: 0.166rem;
+      border-radius: 1rem;
+    }
   }
 
   input[type="range"]::-webkit-slider-runnable-track {
     width: 100%;
     height: 100%;
     cursor: pointer;
-    // animate: 0.2s;
     box-shadow: 0px 0px 0px #000000;
-    /* background: linear-gradient(90deg, greenyellow 50%, white 50%); */
     border-radius: 16px;
     z-index: 0;
     transition: all 550ms cubic-bezier(0, 0.17, 0.23, 1);
   }
-
-  // .completed input[type="range"]::-webkit-slider-runnable-track {
-  //   background-color: greenyellow;
-  // }
 
   input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
