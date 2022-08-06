@@ -178,7 +178,7 @@ export default {
     appearance: none;
     box-shadow: 1px 1px 1px #828282;
     height: 50px;
-    // width: 0.1rem;
+    width: 0.1rem;
     border-radius: 16px;
     background: #dadada;
     cursor: pointer;
@@ -187,7 +187,7 @@ export default {
   input[type="range"]::-webkit-slider-thumb {
     box-shadow: 1px 1px 1px #828282;
     height: 100%;
-    // width: 150px;
+    width: 0.1rem;
     border-radius: 16px;
     background: #dadada;
     cursor: pointer;
