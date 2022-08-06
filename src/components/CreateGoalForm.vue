@@ -75,25 +75,32 @@
       <label class="color">Color:</label>
     </div>
     <div class="row row-3">
-      <div class="iconsContainer">
-        <!-- implement icon picker here -->
+      <div class="icon-picker-container">
         <div
           v-for="icon in iconsList"
-          class="icon"
-          :class="isSelectedIcon(icon) && 'selected'"
+          :class="['icon', isSelectedIcon(icon) && 'selected']"
           :key="icon"
           @click="handleIconClick(icon)"
         >
           <font-awesome-icon :icon="['fa-solid', icon]" />
         </div>
-        <!-- <font-awesome-icon
-          v-for="icon in iconsList"
-          class="icon"
-          :icon="['fa-solid', icon]"
-          :key="icon"
-        /> -->
       </div>
-      <!-- implement color picker here -->
+      <div class="color-picker-container">
+        <div v-for="color in colorsList" :key="color" class="color-container">
+          <div
+            :class="['color', isSelectedColor(color) && 'selected']"
+            :style="{ 'background-color': color }"
+            @click="handleColorClick(color)"
+          ></div>
+        </div>
+        <!-- <div
+          v-for="color in colorsList"
+          :key="color"
+          :class="['color', isSelectedColor(color) && 'selected']"
+          :style="{ 'background-color': color }"
+          @click="handleColorClick(color)"
+        ></div> -->
+      </div>
     </div>
     <input type="submit" name="Add" :style="{ cursor: 'pointer' }" />
     <!-- <p onClick={toggleShowForm} style={{ cursor: 'pointer' }}>
@@ -127,6 +134,26 @@ export default {
         "fa-bowl-rice",
         "fa-brain",
       ],
+      colorsList: [
+        "#f44336",
+        "#e91e63",
+        "#9c27b0",
+        "#673ab7",
+        "#3f51b5",
+        "#2196f3",
+        "#03a9f4",
+        "#00bcd4",
+        "#009688",
+        "#4caf50",
+        "#8bc34a",
+        "#cddc39",
+        "#ffeb3b",
+        "#ffc107",
+        "#ff9800",
+        "#ff5722",
+        "#795548",
+        "#607d8b",
+      ],
       name: "",
       iconName: "fa-bullseye",
       measurement: "Times",
@@ -157,8 +184,14 @@ export default {
     handleIconClick(icon) {
       this.iconName = icon;
     },
-    handleColorChange(event) {
-      this.color = event.target.value;
+    handleColorClick(color) {
+      this.color = color;
+    },
+    isSelectedIcon(icon) {
+      return this.iconName === icon;
+    },
+    isSelectedColor(color) {
+      return this.color === color;
     },
     handleSubmit() {
       const newGoal = {
@@ -172,9 +205,6 @@ export default {
         color: this.color,
       };
       this.addNewGoal(newGoal);
-    },
-    isSelectedIcon(icon) {
-      return this.iconName === icon;
     },
   },
 };
@@ -250,27 +280,66 @@ form {
   }
 }
 
-.iconsContainer {
+.icon-picker-container {
   display: flex;
   width: 50%;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
+  margin-right: 2rem;
   .icon {
-    // margin: 0.5rem;
     padding: 0.33rem;
     margin: 0.33rem;
-    border-radius: 0.5rem;
+    border-radius: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
     border: 1px solid white;
-
+    max-width: 2rem;
+    width: 1.66rem;
+    height: 1.66rem;
     transition: all 150ms ease-in-out;
     &:hover {
-      background-color: rgb(255, 252, 159);
+      // background-color: rgb(255, 252, 159);
+      border: 1px solid black;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 1rem 2rem -0.5rem,
+        rgba(0, 0, 0, 0.3) 0px 0.5rem 1rem -0.5rem;
+      transform: scale(1.1);
     }
     &.selected {
       // background-color: rgb(255, 252, 159);
       border: 1px solid black;
+    }
+  }
+}
+
+.color-picker-container {
+  display: flex;
+  width: 50%;
+  flex-flow: row wrap;
+  .color-container {
+    padding: 0.33rem;
+    margin: 0.33rem;
+    border-radius: 2rem;
+    max-width: 1.66rem;
+    width: 1.66rem;
+    height: 1.66rem;
+    .color {
+      max-width: 1.66rem;
+      width: 1.66rem;
+      height: 1.66rem;
+      margin: 0.33rem;
+      border-radius: 1rem;
+      border: 1px solid white;
+      transition: all 150ms ease-in-out;
+      &.selected {
+        // background-color: rgb(255, 252, 159);
+        border: 1px solid black;
+      }
+      &:hover {
+        border: 1px solid black;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 1rem 2rem -0.5rem,
+          rgba(0, 0, 0, 0.3) 0px 0.5rem 1rem -0.5rem;
+        transform: scale(1.1);
+      }
     }
   }
 }
