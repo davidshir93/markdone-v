@@ -6,6 +6,10 @@ const routes = [
     path: "/",
     name: "home",
     component: HomeView,
+    meta: {
+      enterClass: "page-slide-left",
+      leaveClass: "page-slide-right",
+    },
   },
   {
     path: "/about",
@@ -15,6 +19,11 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+
+    meta: {
+      enterClass: "page-slide-left",
+      leaveClass: "page-slide-right",
+    },
   },
   {
     path: "/newGoal",
@@ -24,6 +33,11 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/NewGoalView.vue"),
+
+    meta: {
+      enterClass: "page-slide-right",
+      leaveClass: "page-slide-left",
+    },
   },
 ];
 

@@ -1,7 +1,9 @@
 <template>
-  <div class="new-goal">
-    <HeaderTitle title="Add a new goal"></HeaderTitle>
-    <CreateGoalForm></CreateGoalForm>
+  <div class="page">
+    <div class="new-goal">
+      <HeaderTitle title="Add a new goal"></HeaderTitle>
+      <CreateGoalForm></CreateGoalForm>
+    </div>
   </div>
 </template>
 
@@ -40,11 +42,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.home {
-  .bottom-menu {
-    display: flex;
-    justify-content: center;
-  }
-}
-</style>
+<style lang="scss" scoped></style>

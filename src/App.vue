@@ -4,7 +4,9 @@
     <router-link to="/newGoal">New Goal</router-link> |
     <router-link to="/about">About</router-link>
   </nav>
-  <router-view />
+  <router-view v-slot="{ Component }">
+    <component :is="Component" />
+  </router-view>
 </template>
 <script>
 export default {

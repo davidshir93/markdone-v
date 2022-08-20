@@ -3,32 +3,23 @@
     <div class="firstRowLabels">
       <label class="name">Goal Name:</label>
     </div>
-    <div
-      class="error"
-      :style="{
-        transform: nameError !== '' ? 'scaleY(1)' : 'scaleY(0)',
-      }"
-    >
-      {{ nameError }}
-    </div>
     <div class="row row-1">
       <input
         type="textbox"
         name="name"
+        :class="this.nameError && 'input-error'"
         :value="name"
         @input="handleNameChange"
         placeholder="Goal Name"
       />
+      <div class="error">
+        {{ nameError }}
+      </div>
     </div>
     <div class="secRowLabels">
       <div class="do">
         <label>Do:</label>
-        <div
-          class="error"
-          :style="{
-            transform: goalValueError !== '' ? 'scaleY(1)' : 'scaleY(0)',
-          }"
-        >
+        <div class="error">
           {{ goalValueError }}
         </div>
       </div>
@@ -93,24 +84,23 @@
             @click="handleColorClick(color)"
           ></div>
         </div>
-        <!-- <div
-          v-for="color in colorsList"
-          :key="color"
-          :class="['color', isSelectedColor(color) && 'selected']"
-          :style="{ 'background-color': color }"
-          @click="handleColorClick(color)"
-        ></div> -->
       </div>
     </div>
-    <input type="submit" name="Add" :style="{ cursor: 'pointer' }" />
-    <!-- <p onClick={toggleShowForm} style={{ cursor: 'pointer' }}>
-				Cancel
-			</p> -->
+    <input
+      type="submit"
+      name="Add"
+      :class="errorsExist && 'disabled'"
+      :style="{ cursor: 'pointer' }"
+    />
+    <router-link class="cancel-btn-container" to="/">
+      <button class="cancel-btn">Cancel</button>
+    </router-link>
   </form>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
+import router from "../router";
 
 export default {
   name: "CreateGoalForm",
@@ -164,10 +154,26 @@ export default {
       goalValueError: "",
     };
   },
+  computed: {
+    ...mapGetters(["getGoals"]),
+    namesExist() {
+      let names = [];
+      this.getGoals.forEach((goal) => names.push(goal.name.toLowerCase()));
+      return names;
+    },
+    errorsExist() {
+      return this.nameError || this.goalValueError;
+    },
+  },
   methods: {
     ...mapActions(["addNewGoal"]),
     handleNameChange(event) {
       this.name = event.target.value;
+      if (this.namesExist.includes(this.name.toLowerCase())) {
+        this.nameError = "Name is already exists";
+      } else {
+        this.nameError = "";
+      }
     },
     handleIconNameChange(event) {
       this.name = event.target.value;
@@ -204,7 +210,10 @@ export default {
         goalFrequency: this.frequency,
         color: this.color,
       };
-      this.addNewGoal(newGoal);
+      if (!this.nameError && !this.goalValueError) {
+        this.addNewGoal(newGoal);
+        router.push("/");
+      }
     },
   },
 };
@@ -244,6 +253,7 @@ form {
     width: 100%;
     display: flex;
     margin-bottom: 2rem;
+    position: relative;
   }
 
   .row-2 input:not(:last-child),
@@ -264,7 +274,9 @@ form {
   }
 
   input[type="submit"] {
-    margin-top: 2rem;
+    margin-top: 1rem;
+    height: 3rem;
+    padding: 0;
     text-align: center;
     align-items: center;
     justify-content: center;
@@ -342,5 +354,34 @@ form {
       }
     }
   }
+}
+.cancel-btn-container {
+  width: 100%;
+  .cancel-btn {
+    margin-top: 1rem;
+    width: 100%;
+    text-align: center;
+    background-color: white;
+    color: black;
+    border-radius: 1rem;
+    height: 2rem;
+    cursor: pointer;
+  }
+}
+
+.error {
+  color: red;
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+}
+.input-error {
+  border-color: red !important;
+}
+
+.disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  background-color: gray !important;
 }
 </style>

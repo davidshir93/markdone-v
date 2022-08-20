@@ -1,13 +1,16 @@
 <template>
-  <div class="home">
-    <HeaderTitle :title="calcDateTitle"></HeaderTitle>
-    <GoalsList></GoalsList>
-    <div class="bottom-menu">
-      <ButtonHome text="Add new goal"></ButtonHome>
-      <ButtonHome
-        text="Reset to initial state"
-        @click="handleResetState"
-      ></ButtonHome>
+  <div class="page">
+    <div class="home">
+      <HeaderTitle :title="calcDateTitle"></HeaderTitle><GoalsList></GoalsList>
+      <div class="bottom-menu">
+        <router-link to="/newGoal">
+          <ButtonHome text="Add new goal" />
+        </router-link>
+        <ButtonHome
+          text="Reset to initial state"
+          @click="handleResetState"
+        ></ButtonHome>
+      </div>
     </div>
   </div>
 </template>
@@ -53,6 +56,9 @@ export default {
   .bottom-menu {
     display: flex;
     justify-content: center;
+    & > * {
+      margin: 0.66rem;
+    }
   }
 }
 </style>
