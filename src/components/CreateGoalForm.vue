@@ -2,6 +2,11 @@
   <form @submit.prevent="handleSubmit">
     <div class="firstRowLabels">
       <label class="name">Goal Name:</label>
+      <transition name="fade">
+        <div v-if="nameError" :class="['error', this.isNudge ? 'nudge' : '']">
+          {{ nameError }}
+        </div>
+      </transition>
     </div>
     <div class="row row-1">
       <input
@@ -12,16 +17,18 @@
         @input="handleNameChange"
         placeholder="Goal Name"
       />
-      <div class="error">
-        {{ nameError }}
-      </div>
     </div>
     <div class="secRowLabels">
       <div class="do">
         <label>Do:</label>
-        <div class="error">
-          {{ goalValueError }}
-        </div>
+        <transition name="fade">
+          <div
+            v-if="goalValueError"
+            :class="['error', this.isNudge ? 'nudge' : '']"
+          >
+            {{ goalValueError }}
+          </div>
+        </transition>
       </div>
       <div class="per">
         <label>Per:</label>
@@ -33,6 +40,7 @@
         id="goalValue"
         type="number"
         :value="goalValue"
+        :class="this.goalValueError && 'input-error'"
         @input="handleGoalValueChange"
         placeholder="Choose Goal Value"
       />
@@ -152,6 +160,7 @@ export default {
       color: "#607d8b",
       nameError: "",
       goalValueError: "",
+      isNudge: false,
     };
   },
   computed: {
@@ -183,6 +192,11 @@ export default {
     },
     handleGoalValueChange(event) {
       this.goalValue = event.target.value;
+      if (this.goalValue < 1) {
+        this.goalValueError = "Please choose a positive value";
+      } else {
+        this.goalValueError = "";
+      }
     },
     handleFrequencyChange(event) {
       this.frequency = event.target.value;
@@ -200,19 +214,24 @@ export default {
       return this.color === color;
     },
     handleSubmit() {
-      const newGoal = {
-        id: Date.now(),
-        name: this.name,
-        icon: this.iconName,
-        done: 0,
-        measuring: this.measurement,
-        goalValue: this.goalValue,
-        goalFrequency: this.frequency,
-        color: this.color,
-      };
-      if (!this.nameError && !this.goalValueError) {
+      if (!this.errorsExist) {
+        const newGoal = {
+          id: Date.now(),
+          name: this.name,
+          icon: this.iconName,
+          done: 0,
+          measuring: this.measurement,
+          goalValue: this.goalValue,
+          goalFrequency: this.frequency,
+          color: this.color,
+        };
         this.addNewGoal(newGoal);
         router.push("/");
+      } else {
+        this.isNudge = true;
+        setTimeout(() => {
+          this.isNudge = false;
+        }, 600);
       }
     },
   },
@@ -229,6 +248,10 @@ form {
     // margin-top: 24px;
   }
 
+  .firstRowLabels {
+    position: relative;
+    width: 100%;
+  }
   .secRowLabels,
   .thirdRowLabels {
     width: 100%;
@@ -238,6 +261,7 @@ form {
   .do {
     /* flex-basis: 2; */
     flex-grow: 0.725;
+    position: relative;
   }
 
   .per {
@@ -252,7 +276,7 @@ form {
   .row {
     width: 100%;
     display: flex;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     position: relative;
   }
 
@@ -283,6 +307,7 @@ form {
     background-color: black;
     color: white;
     cursor: pointer;
+    transition: all 200ms ease-in-out;
   }
 
   p {
@@ -372,16 +397,61 @@ form {
 .error {
   color: red;
   position: absolute;
-  bottom: 24px;
-  right: 24px;
+  top: 120px;
+  left: 0;
 }
 .input-error {
   border-color: red !important;
 }
 
 .disabled {
-  cursor: not-allowed;
-  pointer-events: none;
+  cursor: not-allowed !important;
   background-color: gray !important;
+}
+
+// animation classes
+.fade-enter-active {
+  transition: all 200ms ease-in-out;
+}
+
+.fade-leave-active {
+  transition: all 150ms ease-in-out;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  transform: translateY(12px);
+  opacity: 0;
+}
+
+@keyframes nudge {
+  0% {
+    transform: translateX(0px);
+  }
+  30% {
+    transform: translateX(20px);
+  }
+  45% {
+    transform: translateX(-16px);
+  }
+  52% {
+    transform: translateX(10px);
+  }
+  55% {
+    transform: translateX(-4px);
+  }
+  60% {
+    transform: translateX(2px);
+  }
+  61% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+.nudge {
+  animation: nudge 500ms ease-in-out forwards;
 }
 </style>

@@ -194,11 +194,5 @@ export default {
     -webkit-appearance: none;
     opacity: 0;
   }
-
-  .completed {
-    input {
-      background-color: greenyellow !important;
-    }
-  }
 }
 </style>
