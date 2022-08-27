@@ -20,7 +20,7 @@ export default {
   box-sizing: border-box;
 }
 nav {
-  padding: 30px;
+  padding: 1rem 0rem;
 
   a {
     font-weight: bold;

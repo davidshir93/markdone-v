@@ -3,6 +3,7 @@
     <select
       name="sortType"
       id="sortType"
+      ref="sortType"
       selected="getSortType"
       @input="handleSelectSortType"
     >
@@ -23,6 +24,7 @@ export default {
     handleSelectSortType(event) {
       const sortType = event.target.value;
       this.changeSortType({ sortType });
+      this.$refs.sortType.blur();
     },
   },
   computed: {
@@ -35,5 +37,6 @@ export default {
 select {
   padding: 0.33rem;
   margin-bottom: 1rem;
+  border: none;
 }
 </style>

@@ -1,6 +1,8 @@
 <template>
   <div class="goals-filter-and-list">
-    <SortDropdown />
+    <div class="filter-container">
+      <SortDropdown />
+    </div>
     <transition-group name="list" appear>
       <div v-for="goal in goalsSorted" :key="goal.id" class="goal-container">
         <GoalItem :goal="goal" @goal-clicked="goalClicked"></GoalItem>
@@ -79,6 +81,10 @@ export default {
 .goals-filter-and-list {
   position: relative;
   overflow: hidden;
+  .filter-container {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 // goals list transition

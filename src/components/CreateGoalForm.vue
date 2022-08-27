@@ -136,8 +136,6 @@ export default {
         "#f44336",
         "#e91e63",
         "#9c27b0",
-        "#673ab7",
-        "#3f51b5",
         "#2196f3",
         "#03a9f4",
         "#00bcd4",
@@ -153,11 +151,11 @@ export default {
         "#607d8b",
       ],
       name: "",
-      iconName: "fa-bullseye",
+      iconName: "fa-user-secret",
       measurement: "Times",
       goalValue: "",
       frequency: "Day",
-      color: "#607d8b",
+      color: "#2196f3",
       nameError: "",
       goalValueError: "",
       isNudge: false,
@@ -214,11 +212,17 @@ export default {
     isSelectedColor(color) {
       return this.color === color;
     },
+    nudgeErrors() {
+      this.isNudge = true;
+      setTimeout(() => {
+        this.isNudge = false;
+      }, 600);
+    },
     handleSubmit() {
       if (!this.name || !this.goalValue) {
         if (!this.name) this.nameError = "A goal needs a name";
         if (!this.goalValue) this.goalValueError = "A goal needs goal";
-        return;
+        this.nudgeErrors();
       } else if (!this.errorsExist) {
         const newGoal = {
           id: Date.now(),
@@ -233,10 +237,7 @@ export default {
         router.push("/");
         setTimeout(() => this.addNewGoal(newGoal), 350);
       } else {
-        this.isNudge = true;
-        setTimeout(() => {
-          this.isNudge = false;
-        }, 600);
+        this.nudgeErrors();
       }
     },
   },
@@ -283,9 +284,11 @@ form {
   .row-3 {
     .icon-picker-container {
       display: flex;
-      width: 50%;
+      width: 54%;
       flex-flow: row wrap;
       margin-right: 2rem;
+      align-content: flex-start;
+
       .icon {
         padding: 0.33rem;
         margin: 0.33rem;
@@ -294,9 +297,11 @@ form {
         justify-content: center;
         align-items: center;
         border: 1px solid white;
-        max-width: 2rem;
-        width: 1.66rem;
-        height: 1.66rem;
+        // max-width: 2rem;
+        width: 32px;
+        height: 32px;
+        max-width: 32px;
+
         transition: all 150ms ease-in-out;
         &:hover {
           border: 1px solid black;
@@ -306,6 +311,7 @@ form {
         }
         &.selected {
           border: 1px solid black;
+          transform: scale(1.25);
         }
       }
     }
@@ -314,6 +320,15 @@ form {
       display: flex;
       width: 50%;
       flex-flow: row wrap;
+      align-content: flex-start;
+      display: flex;
+      width: 50%;
+      flex-flow: row wrap;
+      margin-right: 2rem;
+      align-content: flex-start;
+      flex-wrap: wrap;
+      flex-direction: row;
+      align-items: flex-start;
       .color-container {
         padding: 0.33rem;
         margin: 0.33rem;
@@ -321,16 +336,19 @@ form {
         max-width: 1.66rem;
         width: 1.66rem;
         height: 1.66rem;
+        padding: 0.33rem;
+        margin: 0.33rem;
         .color {
           max-width: 1.66rem;
           width: 1.66rem;
           height: 1.66rem;
-          margin: 0.33rem;
+          // margin: 0.33rem;
           border-radius: 1rem;
           border: 1px solid white;
           transition: all 150ms ease-in-out;
           &.selected {
             border: 1px solid black;
+            transform: scale(1.25);
           }
           &:hover {
             border: 1px solid black;
@@ -391,6 +409,7 @@ form {
       border-radius: 1rem;
       height: 2rem;
       cursor: pointer;
+      border: none;
     }
   }
 }
