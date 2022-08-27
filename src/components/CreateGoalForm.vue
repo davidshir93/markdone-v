@@ -178,7 +178,8 @@ export default {
     ...mapActions(["addNewGoal"]),
     handleNameChange(event) {
       this.name = event.target.value;
-      if (this.namesExist.includes(this.name.toLowerCase())) {
+      if (!this.name) this.nameError = "A goal needs a name";
+      else if (this.namesExist.includes(this.name.toLowerCase())) {
         this.nameError = "Name is already exists";
       } else {
         this.nameError = "";
@@ -214,7 +215,11 @@ export default {
       return this.color === color;
     },
     handleSubmit() {
-      if (!this.errorsExist) {
+      if (!this.name || !this.goalValue) {
+        if (!this.name) this.nameError = "A goal needs a name";
+        if (!this.goalValue) this.goalValueError = "A goal needs goal";
+        return;
+      } else if (!this.errorsExist) {
         const newGoal = {
           id: Date.now(),
           name: this.name,
@@ -225,8 +230,8 @@ export default {
           goalFrequency: this.frequency,
           color: this.color,
         };
-        this.addNewGoal(newGoal);
         router.push("/");
+        setTimeout(() => this.addNewGoal(newGoal), 350);
       } else {
         this.isNudge = true;
         setTimeout(() => {

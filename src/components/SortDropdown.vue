@@ -33,6 +33,7 @@ export default {
 
 <style lang="scss" scoped>
 select {
-  padding: 1rem;
+  padding: 0.33rem;
+  margin-bottom: 1rem;
 }
 </style>
