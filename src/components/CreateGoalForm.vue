@@ -280,6 +280,72 @@ form {
     position: relative;
   }
 
+  .row-3 {
+    .icon-picker-container {
+      display: flex;
+      width: 50%;
+      flex-flow: row wrap;
+      margin-right: 2rem;
+      .icon {
+        padding: 0.33rem;
+        margin: 0.33rem;
+        border-radius: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid white;
+        max-width: 2rem;
+        width: 1.66rem;
+        height: 1.66rem;
+        transition: all 150ms ease-in-out;
+        &:hover {
+          // background-color: rgb(255, 252, 159);
+          border: 1px solid black;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 1rem 2rem -0.5rem,
+            rgba(0, 0, 0, 0.3) 0px 0.5rem 1rem -0.5rem;
+          transform: scale(1.1);
+        }
+        &.selected {
+          // background-color: rgb(255, 252, 159);
+          border: 1px solid black;
+        }
+      }
+    }
+
+    .color-picker-container {
+      display: flex;
+      width: 50%;
+      flex-flow: row wrap;
+      .color-container {
+        padding: 0.33rem;
+        margin: 0.33rem;
+        border-radius: 2rem;
+        max-width: 1.66rem;
+        width: 1.66rem;
+        height: 1.66rem;
+        .color {
+          max-width: 1.66rem;
+          width: 1.66rem;
+          height: 1.66rem;
+          margin: 0.33rem;
+          border-radius: 1rem;
+          border: 1px solid white;
+          transition: all 150ms ease-in-out;
+          &.selected {
+            // background-color: rgb(255, 252, 159);
+            border: 1px solid black;
+          }
+          &:hover {
+            border: 1px solid black;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 1rem 2rem -0.5rem,
+              rgba(0, 0, 0, 0.3) 0px 0.5rem 1rem -0.5rem;
+            transform: scale(1.1);
+          }
+        }
+      }
+    }
+  }
+
   .row-2 input:not(:last-child),
   .row-2 select:not(:last-child),
   .row-3 input:not(:last-child) {
@@ -294,7 +360,8 @@ form {
     align-items: center;
     justify-content: space-between;
     padding: 1.33rem;
-    margin-top: 1.33rem;
+    margin-top: 1rem;
+    font-weight: 600;
   }
 
   input[type="submit"] {
@@ -315,89 +382,26 @@ form {
     align-items: center;
     justify-content: center;
   }
-}
 
-.icon-picker-container {
-  display: flex;
-  width: 50%;
-  flex-flow: row wrap;
-  margin-right: 2rem;
-  .icon {
-    padding: 0.33rem;
-    margin: 0.33rem;
-    border-radius: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid white;
-    max-width: 2rem;
-    width: 1.66rem;
-    height: 1.66rem;
-    transition: all 150ms ease-in-out;
-    &:hover {
-      // background-color: rgb(255, 252, 159);
-      border: 1px solid black;
-      box-shadow: rgba(50, 50, 93, 0.25) 0px 1rem 2rem -0.5rem,
-        rgba(0, 0, 0, 0.3) 0px 0.5rem 1rem -0.5rem;
-      transform: scale(1.1);
-    }
-    &.selected {
-      // background-color: rgb(255, 252, 159);
-      border: 1px solid black;
-    }
-  }
-}
-
-.color-picker-container {
-  display: flex;
-  width: 50%;
-  flex-flow: row wrap;
-  .color-container {
-    padding: 0.33rem;
-    margin: 0.33rem;
-    border-radius: 2rem;
-    max-width: 1.66rem;
-    width: 1.66rem;
-    height: 1.66rem;
-    .color {
-      max-width: 1.66rem;
-      width: 1.66rem;
-      height: 1.66rem;
-      margin: 0.33rem;
-      border-radius: 1rem;
-      border: 1px solid white;
-      transition: all 150ms ease-in-out;
-      &.selected {
-        // background-color: rgb(255, 252, 159);
-        border: 1px solid black;
-      }
-      &:hover {
-        border: 1px solid black;
-        box-shadow: rgba(50, 50, 93, 0.25) 0px 1rem 2rem -0.5rem,
-          rgba(0, 0, 0, 0.3) 0px 0.5rem 1rem -0.5rem;
-        transform: scale(1.1);
-      }
-    }
-  }
-}
-.cancel-btn-container {
-  width: 100%;
-  .cancel-btn {
-    margin-top: 1rem;
+  .cancel-btn-container {
     width: 100%;
-    text-align: center;
-    background-color: white;
-    color: black;
-    border-radius: 1rem;
-    height: 2rem;
-    cursor: pointer;
+    .cancel-btn {
+      margin-top: 1rem;
+      width: 100%;
+      text-align: center;
+      background-color: white;
+      color: black;
+      border-radius: 1rem;
+      height: 2rem;
+      cursor: pointer;
+    }
   }
 }
 
 .error {
   color: red;
   position: absolute;
-  top: 120px;
+  top: 6.5rem;
   left: 0;
 }
 .input-error {
@@ -409,7 +413,7 @@ form {
   background-color: gray !important;
 }
 
-// animation classes
+// Animation classes
 .fade-enter-active {
   transition: all 200ms ease-in-out;
 }
