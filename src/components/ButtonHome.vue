@@ -1,6 +1,6 @@
 <template>
   <div class="btn" @click="onClick">
-    <img v-if="iconSrc" :src="iconSrc" />
+    <font-awesome-icon v-if="icon" class="icon" :icon="['fa-solid', icon]" />
     {{ text }}
   </div>
 </template>
@@ -13,7 +13,7 @@ export default {
       type: String,
       default: "Click me!",
     },
-    iconSrc: {
+    icon: {
       type: String,
       default: "",
     },
@@ -27,10 +27,27 @@ export default {
 
 <style lang="scss" scoped>
 .btn {
-  border-radius: 1.33rem;
-  background: paleturquoise;
   padding: 1.33rem;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  text-decoration: none !important;
+  color: black;
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+
+  .icon {
+    width: 2rem;
+    height: 2rem;
+    margin-right: 1rem;
+    transform: rotate(0deg);
+    transition: all 200ms ease-in-out;
+  }
+  &:hover {
+    font-weight: 600;
+    .icon {
+      transform: rotate(-180deg);
+    }
+  }
   &:not(:last-child) {
     margin-right: 1.33rem;
   }

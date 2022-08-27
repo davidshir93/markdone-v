@@ -1,15 +1,17 @@
 <template>
   <div class="page">
     <div class="home">
-      <HeaderTitle :title="calcDateTitle"></HeaderTitle><GoalsList></GoalsList>
+      <HeaderTitle :title="calcDateTitle"></HeaderTitle>
+      <GoalsList />
       <div class="bottom-menu">
-        <router-link to="/newGoal">
-          <ButtonHome text="Add new goal" />
+        <router-link to="/newGoal" style="text-decoration: none">
+          <ButtonHome text="Add new goal" icon="fa-plus-circle" />
         </router-link>
         <ButtonHome
           text="Reset to initial state"
+          icon="fa-undo-alt"
           @click="handleResetState"
-        ></ButtonHome>
+        />
       </div>
     </div>
   </div>
@@ -56,9 +58,6 @@ export default {
   .bottom-menu {
     display: flex;
     justify-content: center;
-    & > * {
-      margin: 0.66rem;
-    }
   }
 }
 </style>

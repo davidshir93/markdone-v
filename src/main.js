@@ -11,6 +11,8 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 /* import specific icons */
 import {
+  faPlusCircle,
+  faUndoAlt,
   faUserSecret,
   faAddressCard,
   faAnchor,
@@ -31,6 +33,8 @@ import {
 
 /* add icons to the library */
 library.add(
+  faPlusCircle,
+  faUndoAlt,
   faUserSecret,
   faAddressCard,
   faAnchor,

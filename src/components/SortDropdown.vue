@@ -1,5 +1,6 @@
 <template>
   <div>
+    Order by:
     <select
       name="sortType"
       id="sortType"
@@ -34,6 +35,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+* {
+  font-size: 1rem;
+}
 select {
   padding: 0.33rem;
   margin-bottom: 1rem;
