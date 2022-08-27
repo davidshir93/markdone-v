@@ -244,9 +244,6 @@ form {
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
-  label {
-    // margin-top: 24px;
-  }
 
   .firstRowLabels {
     position: relative;
@@ -259,14 +256,12 @@ form {
   }
 
   .do {
-    /* flex-basis: 2; */
     flex-grow: 0.725;
     position: relative;
   }
 
   .per {
     flex-flow: 1;
-    /* flex-basis: 1; */
   }
 
   .icon {
@@ -299,14 +294,12 @@ form {
         height: 1.66rem;
         transition: all 150ms ease-in-out;
         &:hover {
-          // background-color: rgb(255, 252, 159);
           border: 1px solid black;
           box-shadow: rgba(50, 50, 93, 0.25) 0px 1rem 2rem -0.5rem,
             rgba(0, 0, 0, 0.3) 0px 0.5rem 1rem -0.5rem;
           transform: scale(1.1);
         }
         &.selected {
-          // background-color: rgb(255, 252, 159);
           border: 1px solid black;
         }
       }
@@ -332,7 +325,6 @@ form {
           border: 1px solid white;
           transition: all 150ms ease-in-out;
           &.selected {
-            // background-color: rgb(255, 252, 159);
             border: 1px solid black;
           }
           &:hover {

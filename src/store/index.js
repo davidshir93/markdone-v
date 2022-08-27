@@ -3,9 +3,11 @@ import { createStore } from "vuex";
 export default createStore({
   state: {
     goals: [],
+    sortType: "alphabetic",
   },
   getters: {
     getGoals: (state) => state.goals,
+    getSortType: (state) => state.sortType,
   },
   mutations: {
     initState(state) {
@@ -48,6 +50,9 @@ export default createStore({
     },
     setGoals(state, goals) {
       state.goals = goals;
+    },
+    setSortType(state, sortType) {
+      state.sortType = sortType;
     },
   },
   actions: {
@@ -98,6 +103,9 @@ export default createStore({
       const newGoals = this.state.goals;
       this.state.goals.find((goal) => goal.id === id).done = updatedValue;
       commit("setGoals", newGoals);
+    },
+    changeSortType({ commit }, { sortType }) {
+      commit("setSortType", sortType);
     },
   },
   modules: {},
