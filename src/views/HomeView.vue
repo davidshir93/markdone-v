@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <div class="home">
-      <HeaderTitle :title="calcDateTitle"></HeaderTitle>
+      <HeaderTitle :title="calcDayName" :subtitle="calcDateSubTitle" />
       <GoalsList />
       <div class="bottom-menu">
         <router-link to="/newGoal" style="text-decoration: none">
@@ -25,20 +25,30 @@ import GoalsList from "@/components/GoalsList.vue";
 
 import { mapActions } from "vuex";
 
-const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wedsday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
 
 export default {
   name: "HomeView",
   components: { HeaderTitle, ButtonHome, GoalsList },
   computed: {
-    calcDateTitle() {
+    calcDayName() {
+      let today = new Date();
+      return days[today.getDay()];
+    },
+    calcDateSubTitle() {
       let today = new Date();
       return (
-        days[today.getDay()] +
-        ", " +
         today.toLocaleString("en-US", { day: "2-digit" }) +
         " " +
-        today.toLocaleString("en-US", { month: "long" }) +
+        today.toLocaleString("en-US", { month: "short" }) +
         " " +
         today.getFullYear()
       );

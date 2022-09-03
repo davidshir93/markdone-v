@@ -1,11 +1,17 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/newGoal">New Goal</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
+  <div class="hamburger">
+    🍔
+    <nav>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/newGoal">New Goal</router-link> |
+      <router-link to="/about">About</router-link>
+    </nav>
+  </div>
+
   <router-view v-slot="{ Component }">
-    <component :is="Component" />
+    <transition name="fade" mode="out-in">
+      <component :is="Component" />
+    </transition>
   </router-view>
 </template>
 <script>
@@ -18,21 +24,6 @@ export default {
 <style lang="scss">
 * {
   box-sizing: border-box;
-}
-nav {
-  padding: 1rem 0rem;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-
-* {
   font-size: 18px;
 }
 
@@ -62,6 +53,50 @@ h2 {
   background-color: white;
   border-radius: 1.33rem;
   width: 100%;
+  height: calc(100vh - 2.33rem);
+  position: relative;
+}
+
+.hamburger {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 1rem;
+  width: 100%;
+  display: inline-block;
+  z-index: 1;
+  background: none;
+  padding: 1rem;
+
+  nav {
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: left center;
+    display: inline;
+    margin-left: 1rem;
+    width: 100%;
+    transition: all 250ms cubic-bezier(0, 0.17, 0.23, 1) 100ms;
+    a {
+      font-weight: bold;
+      color: #2c3e50;
+
+      &.router-link-exact-active {
+        color: #42b983;
+      }
+    }
+    a:not(:last-child) {
+      margin-right: 0.33rem;
+    }
+    a:not(:first-child) {
+      margin-left: 0.33rem;
+    }
+  }
+  &:hover {
+    nav {
+      transform: scaleX(1);
+      opacity: 1;
+    }
+  }
 }
 
 /* On screens that are 870px or less */
@@ -101,5 +136,23 @@ h2 {
     text-align: center;
     z-index: 100;
   }
+}
+
+// Animation classes
+.fade-enter-active {
+  transition: all 200ms ease-in-out;
+}
+
+.fade-leave-active {
+  transition: all 150ms ease-in-out;
+}
+
+.fade-enter-from {
+  transform: translateX(10rem);
+  opacity: 0;
+}
+.fade-leave-to {
+  transform: translateX(-10rem);
+  opacity: 0;
 }
 </style>
