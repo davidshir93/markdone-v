@@ -5,7 +5,7 @@
     </div>
     <transition-group name="list" appear>
       <div v-for="goal in goalsSorted" :key="goal.id" class="goal-container">
-        <GoalItem :goal="goal" @goal-clicked="goalClicked"></GoalItem>
+        <GoalItem :goal="goal"></GoalItem>
       </div>
     </transition-group>
   </div>
@@ -21,10 +21,6 @@ export default {
   components: { GoalItem, SortDropdown },
   methods: {
     ...mapActions(["deleteGoal"]),
-    goalClicked(id) {
-      console.log("deleting goal with the id: " + id);
-      this.deleteGoal(id);
-    },
     compareAlphabetic(a, b) {
       if (a.name.toLowerCase() < b.name.toLowerCase()) {
         return -1;

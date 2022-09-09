@@ -1,10 +1,5 @@
 <template>
-  <div
-    class="goal"
-    @click="goalClicked"
-    :class="[completed && 'completed']"
-    :style="cssVars"
-  >
+  <div class="goal" :class="[completed && 'completed']" :style="cssVars">
     <input
       type="range"
       min="0"
@@ -60,16 +55,11 @@ export default {
   },
   methods: {
     ...mapActions(["changeGoalDone"]),
-    goalClicked() {
-      // this.$emit("goal-clicked", this.goal.id);
-      // console.log("goal with id " + this.goal.id + " clicked");
-    },
     handleSlideChange(event, id) {
       const updatedValue = event.target.value;
       this.changeGoalDone({ id, updatedValue });
     },
   },
-  emits: ["goal-clicked"],
 };
 </script>
 
@@ -174,20 +164,9 @@ export default {
   }
 
   input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    box-shadow: 1px 1px 1px #828282;
-    height: 50px;
-    width: 5rem;
-    border-radius: 16px;
-    background: #dadada;
-    cursor: pointer;
-  }
-
-  input[type="range"]::-webkit-slider-thumb {
     box-shadow: 1px 1px 1px #828282;
     height: 100%;
-    width: 5rem;
+    width: 50px;
     border-radius: 16px;
     background: #dadada;
     cursor: pointer;
