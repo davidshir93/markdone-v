@@ -250,7 +250,7 @@ form {
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
-
+  margin-top: 1rem;
   .firstRowLabels {
     position: relative;
     width: 100%;
@@ -277,7 +277,7 @@ form {
   .row {
     width: 100%;
     display: flex;
-    margin-bottom: 3rem;
+    margin-bottom: 2.33rem;
     position: relative;
   }
 
@@ -473,5 +473,22 @@ form {
 
 .nudge {
   animation: nudge 500ms ease-in-out forwards;
+}
+
+@media screen and (max-width: 500px) {
+  .icon-picker-container {
+    margin-right: 1rem !important;
+    .icon {
+      width: 24px !important;
+      height: 24px !important;
+    }
+  }
+  .color-picker-container {
+    margin-right: 1.33rem !important;
+    .color-container {
+      width: 24px !important;
+      height: 24px !important;
+    }
+  }
 }
 </style>
