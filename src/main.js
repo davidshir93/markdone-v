@@ -13,7 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import {
   faPlusCircle,
   faUndoAlt,
-  faUserSecret,
+  faDumbbell,
   faAddressCard,
   faAnchor,
   faAppleWhole,
@@ -35,7 +35,7 @@ import {
 library.add(
   faPlusCircle,
   faUndoAlt,
-  faUserSecret,
+  faDumbbell,
   faAddressCard,
   faAnchor,
   faAppleWhole,

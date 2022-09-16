@@ -115,7 +115,7 @@ export default {
   data() {
     return {
       iconsList: [
-        "fa-user-secret",
+        "fa-dumbbell",
         "fa-address-card",
         "fa-anchor",
         "fa-apple-whole",
@@ -151,7 +151,7 @@ export default {
         "#607d8b",
       ],
       name: "",
-      iconName: "fa-user-secret",
+      iconName: "fa-dumbbell",
       measurement: "Times",
       goalValue: "",
       frequency: "Day",

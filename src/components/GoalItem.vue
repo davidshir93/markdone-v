@@ -11,10 +11,7 @@
     />
     <div class="goalElementsContainer" :class="[completed && 'completed']">
       <div class="goalName">
-        <!-- Add the style and icon you want using the String format -->
         <font-awesome-icon class="icon" :icon="['fa-solid', goal.icon]" />
-
-        <!-- <font-awesome-icon icon="fa-solid fa-user-secret" /> -->
         <h2>{{ goal.name }}</h2>
       </div>
       <div class="goalDetails">

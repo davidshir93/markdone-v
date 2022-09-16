@@ -1,7 +1,10 @@
 <template>
   <div class="about">
-    <HeaderTitle title="This is the about page" />
-    <p>This project was made by David Shir</p>
+    <HeaderTitle title="About Markdone" />
+    <p>
+      Markdone is a web application that allows you to create and keep track of
+      your goals in a minimalistic manner.
+    </p>
   </div>
 </template>
 
@@ -14,4 +17,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+p {
+  line-height: 1.66rem;
+}
+</style>

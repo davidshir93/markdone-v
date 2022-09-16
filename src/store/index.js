@@ -18,7 +18,7 @@ export default createStore({
           {
             id: 1,
             name: "Eat Protein",
-            icon: "fa-user-secret",
+            icon: "fa-apple-whole",
             measuring: "grams",
             done: 55,
             goalValue: 125,
@@ -28,7 +28,7 @@ export default createStore({
           {
             id: 2,
             name: "Go to the Gym",
-            icon: "fa-user-secret",
+            icon: "fa-dumbbell",
             measuring: "units",
             done: 1,
             goalValue: 4,
@@ -38,7 +38,7 @@ export default createStore({
           {
             id: 3,
             name: "Meditate",
-            icon: "fa-user-secret",
+            icon: "fa-bell",
             measuring: "minutes",
             done: 10,
             goalValue: 10,
@@ -66,7 +66,7 @@ export default createStore({
         {
           id: 1,
           name: "Eat Protein",
-          icon: "fa-user-secret",
+          icon: "fa-apple-whole",
           measuring: "grams",
           done: 55,
           goalValue: 125,
@@ -76,7 +76,7 @@ export default createStore({
         {
           id: 2,
           name: "Go to the Gym",
-          icon: "fa-user-secret",
+          icon: "fa-dumbbell",
           measuring: "units",
           done: 1,
           goalValue: 4,
@@ -86,7 +86,7 @@ export default createStore({
         {
           id: 3,
           name: "Meditate",
-          icon: "fa-user-secret",
+          icon: "fa-bell",
           measuring: "minutes",
           done: 10,
           goalValue: 10,
