@@ -25,33 +25,26 @@ import GoalsList from "@/components/GoalsList.vue";
 
 import { mapActions } from "vuex";
 
-const days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wedsday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
+const now = new Date();
+const locale = navigator.language;
 
 export default {
   name: "HomeView",
   components: { HeaderTitle, ButtonHome, GoalsList },
   computed: {
     calcDayName() {
-      let today = new Date();
-      return days[today.getDay()];
+      const options = {
+        weekday: "long",
+      };
+      return new Intl.DateTimeFormat(locale, options).format(now);
     },
     calcDateSubTitle() {
-      let today = new Date();
-      return (
-        today.toLocaleString("en-US", { day: "2-digit" }) +
-        " " +
-        today.toLocaleString("en-US", { month: "short" }) +
-        " " +
-        today.getFullYear()
-      );
+      const options = {
+        day: "numeric",
+        month: "numeric",
+        year: "numeric",
+      };
+      return new Intl.DateTimeFormat(locale, options).format(now);
     },
   },
   methods: {
